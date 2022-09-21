@@ -1,3 +1,5 @@
+use once_cell::sync::OnceCell;
+
 #[macro_export]
 macro_rules! trace {
     ($x:expr) => {
@@ -48,6 +50,19 @@ macro_rules! error {
     };
 }
 
+pub static LOG_CONFIG: OnceCell<LogConfig> = OnceCell::new();
+
+pub struct LogConfig;
+
 pub fn prepare_log() {
-    log4rs::init_file("log4rs_config.yaml", Default::default()).unwrap();
+
+    prepare_log_with_file("log4rs_config.yaml");
+}
+
+
+pub fn prepare_log_with_file(log_file: &str) {
+    LOG_CONFIG.get_or_init(|| {
+        log4rs::init_file(log_file, Default::default()).unwrap();
+        LogConfig
+    });
 }
