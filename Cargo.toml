@@ -2,7 +2,7 @@
 name = "log4rs-macros"
 version = "1.1.1"
 authors = ["Evanzp0"]
-description = "log4rs's macros for using module as default target"
+description = "macros for log4rs that use mod as default target"
 license = "MIT/Apache-2.0"
 repository = "https://github.com/evanzp0/log4rs-macros"
 readme = "README.md"
